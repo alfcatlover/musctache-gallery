@@ -34,29 +34,35 @@ export default class Gallery {
 
   setupEventHandlers() {
     this.container.querySelector('.slider-btn-next').addEventListener('click', () => {
-      console.log('next');
-      if (this.currentIndex < this.photos.length - this.size) {
-        this.setCurrentSlide(this.currentIndex + 1);
-      }
-    })
+      this.setCurrentSlide(this.currentIndex + 1);
+    });
     this.container.querySelector('.slider-btn-prev').addEventListener('click', () => {
-      console.log('prev');
-      if (this.currentIndex > 0) {
-        this.setCurrentSlide(this.currentIndex - 1);
-      }
+      this.setCurrentSlide(this.currentIndex - 1);
+    });
+
+    this.container.querySelectorAll('.slide').forEach(($slide) => {
+      $slide.addEventListener('click', () => {
+        debugger;
+        this.setCurrentSlide(parseInt($slide.dataset.index));
+      })
     })
   }
 
   setCurrentSlide(currentSlide) {
-    this.prevSlide = this.currentIndex;
-    this.currentIndex = currentSlide;
+    if (currentSlide >= 0 && currentSlide < this.photos.length) {
+      this.prevSlide = this.currentIndex;
+      this.currentIndex = currentSlide;
 
-    const $slider = document.querySelector('.slider-in');
-    const offset = this.slideWidth * -currentSlide;
-    $slider.style.left = `${offset}px`;
+      const $slider = document.querySelector('.slider-in');
+      const maxOffset = this.photos.length * this.slideWidth - (this.size - 1) * this.slideWidth;
+      const offset = (this.slideWidth * -currentSlide) + (this.slideWidth * Math.ceil((this.size - 1) / 2));
 
-    $slider.querySelector(`.slide:nth-child(${this.prevSlide + 1})`).classList.remove('slide-active');
-    $slider.querySelector(`.slide:nth-child(${currentSlide + 1})`).classList.add('slide-active');
+      if (offset <= 0 && Math.abs(offset) < maxOffset) {
+        $slider.style.left = `${offset}px`;
+      }
 
+      $slider.querySelector(`.slide:nth-child(${this.prevSlide + 1})`).classList.remove('slide-active');
+      $slider.querySelector(`.slide:nth-child(${currentSlide + 1})`).classList.add('slide-active');
+    }
   }
 }

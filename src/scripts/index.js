@@ -8,11 +8,11 @@ const gallery = new Gallery({
     {id: '3', src: 'https://i.picsum.photos/id/321/200/200.jpg'},
     {id: '4', src: 'https://i.picsum.photos/id/322/200/200.jpg'},
     {id: '5', src: 'https://i.picsum.photos/id/323/200/200.jpg'},
-    {id: '6', src: 'https://i.picsum.photos/id/324/200/200.jpg'},
-    {id: '7', src: 'https://i.picsum.photos/id/325/200/200.jpg'},
-    {id: '8', src: 'https://i.picsum.photos/id/326/200/200.jpg'},
+    // {id: '6', src: 'https://i.picsum.photos/id/324/200/200.jpg'},
+    // {id: '7', src: 'https://i.picsum.photos/id/325/200/200.jpg'},
+    // {id: '8', src: 'https://i.picsum.photos/id/326/200/200.jpg'},
   ],
   size: 5,
-  current: '4',
+  current: '3',
   container: document.getElementById('gallery')
 })
