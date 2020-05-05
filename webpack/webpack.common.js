@@ -1,5 +1,5 @@
 const Path = require('path');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -20,11 +20,11 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new CopyWebpackPlugin([
-      { from: Path.resolve(__dirname, '../public'), to: 'public' }
+      {from: Path.resolve(__dirname, '../public'), to: 'public'}
     ]),
     new HtmlWebpackPlugin({
       template: Path.resolve(__dirname, '../src/index.html')
-    })
+    }),
   ],
   resolve: {
     alias: {
@@ -47,6 +47,13 @@ module.exports = {
           }
         }
       },
+      {
+        test: /\.html$/,
+        loader: 'mustache-loader',
+        // loader: 'mustache-loader?minify'
+        // loader: 'mustache-loader?{ minify: { removeComments: false } }'
+        // loader: 'mustache-loader?noShortcut'
+      }
     ]
   }
 };
