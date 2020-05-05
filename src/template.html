@@ -6,8 +6,9 @@
       {{#photos}}
       <div class="slide"
            data-index={{index}}
-           style="left: {{offsetLeft}}px; width: {{slideWidth}}px; height: {{slideWidth}}px">
-        <img src={{src}}/>
+           style="left: {{offsetLeft}}px; width: {{slideWidth}}px; height: {{slideWidth}}px;">
+        <img src={{src}}
+             style="max-width: {{slideWidth}}px; max-height: {{slideWidth}}px;"/>
       </div>
       {{/photos}}
     </div>

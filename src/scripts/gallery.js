@@ -13,9 +13,9 @@ export default class Gallery {
     this.size = size;
     this.slideWidth = slideWidth;
     this.currentIndex = this.getPhotoIndexById(current);
-
     this.prevSlide = this.currentIndex ? this.currentIndex - 1 : 1;
-    this.container = container
+    this.container = container;
+
     this.setupLayout();
     this.setupEventHandlers();
     this.scrollToSlide(this.currentIndex);
@@ -25,12 +25,24 @@ export default class Gallery {
     return this.photos.reduce((acc, photo, index) => photo.id === id ? index : acc, 0);
   }
 
+  convertImageSrcToDeviceRatio(src) {
+    const {devicePixelRatio} = window;
+    if (devicePixelRatio > 1 && devicePixelRatio <= 2) {
+      return src.replace(/(\w+)\.(\w+)/, "$1@2x.$2");
+    } else if (devicePixelRatio > 2) {
+      return src.replace(/(\w+)\.(\w+)/, "$1@3x.$2");
+    } else {
+      return src;
+    }
+  }
+
   setupLayout() {
     this.container.innerHTML = template({
       sliderWidth: this.slideWidth * this.size,
       slideWidth: this.slideWidth,
-      photos: this.photos.map((photo, index) => ({
-        ...photo,
+      photos: this.photos.map(({id, src}, index) => ({
+        id,
+        src: this.convertImageSrcToDeviceRatio(src),
         index,
         offsetLeft: index * this.slideWidth
       }))
