@@ -16,3 +16,4 @@ const gallery = new Gallery({
   current: '3',
   container: document.getElementById('gallery')
 })
+
