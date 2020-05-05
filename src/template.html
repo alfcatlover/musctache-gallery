@@ -1,10 +1,12 @@
 <div class="slider-wrap">
   <div class="slider-btn-prev"></div>
   <div class="slider-btn-next"></div>
-  <div class="slider" style="width: {{sliderWidth}}px">
+  <div class="slider" style="width: {{sliderWidth}}px; height: {{slideWidth}}px">
     <div class="slider-in">
       {{#photos}}
-      <div class="slide" data-index={{index}} style="left: {{offsetLeft}}px">
+      <div class="slide"
+           data-index={{index}}
+           style="left: {{offsetLeft}}px; width: {{slideWidth}}px; height: {{slideWidth}}px">
         <img src={{src}}/>
       </div>
       {{/photos}}

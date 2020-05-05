@@ -2,12 +2,16 @@ import '../styles/index.scss';
 import template from '../template.html';
 
 export default class Gallery {
-  slideWidth = 200;
-
-  constructor({photos, size, current, container}) {
+  constructor({
+                photos,
+                size,
+                current,
+                container,
+                slideWidth
+              }) {
     this.photos = photos;
     this.size = size;
-    this.current = current;
+    this.slideWidth = slideWidth;
     this.currentIndex = this.getPhotoIndexById(current);
 
     this.prevSlide = this.currentIndex ? this.currentIndex - 1 : 1;
@@ -24,6 +28,7 @@ export default class Gallery {
   setupLayout() {
     this.container.innerHTML = template({
       sliderWidth: this.slideWidth * this.size,
+      slideWidth: this.slideWidth,
       photos: this.photos.map((photo, index) => ({
         ...photo,
         index,
