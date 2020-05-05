@@ -44,7 +44,18 @@ export default class Gallery {
       $slide.addEventListener('click', () => {
         this.scrollToSlide(parseInt($slide.dataset.index));
       })
-    })
+    });
+
+    document.onkeydown = ({keyCode}) => {
+      // left arrow press
+      if (keyCode === 37) {
+        this.scrollToSlide(this.currentIndex - 1);
+      }
+      // right arrow press
+      if (keyCode === 39) {
+        this.scrollToSlide(this.currentIndex + 1);
+      }
+    };
   }
 
   scrollToSlide(currentSlide) {
