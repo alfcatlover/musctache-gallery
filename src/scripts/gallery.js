@@ -25,7 +25,7 @@ export default class Gallery {
     return this.photos.reduce((acc, photo, index) => photo.id === id ? index : acc, 0);
   }
 
-  convertImageSrcToDeviceRatio(src) {
+  getSrcWithDeviceRatio(src) {
     const {devicePixelRatio} = window;
     if (devicePixelRatio > 1 && devicePixelRatio <= 2) {
       return src.replace(/(\w+)\.(\w+)/, "$1@2x.$2");
@@ -42,7 +42,7 @@ export default class Gallery {
       slideWidth: this.slideWidth,
       photos: this.photos.map(({id, src}, index) => ({
         id,
-        src: this.convertImageSrcToDeviceRatio(src),
+        src: this.getSrcWithDeviceRatio(src),
         index,
         offsetLeft: index * this.slideWidth
       }))
@@ -88,7 +88,7 @@ export default class Gallery {
         offset = -(this.photos.length - this.size) * this.slideWidth;
       }
 
-      $slider.style.left = `${offset}px`;
+      $slider.style.transform = `translateX(${offset}px)`;
       $slider.querySelector(`.slide:nth-child(${this.prevSlide + 1})`).classList.remove('slide-active');
       $slider.querySelector(`.slide:nth-child(${currentSlide + 1})`).classList.add('slide-active');
     }
