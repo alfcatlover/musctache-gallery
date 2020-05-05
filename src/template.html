@@ -2,11 +2,13 @@
   <div class="slider-btn-prev"><</div>
   <div class="slider-btn-next">></div>
   <div class="slider" style="width: {{sliderWidth}}px">
-    {{#photos}}
-    <div class="slide" data-index={{index}} style="left: {{offsetLeft}}px">
-      <img src={{src}} />
+    <div class="slider-in">
+      {{#photos}}
+      <div class="slide" data-index={{index}} style="left: {{offsetLeft}}px">
+        <img src={{src}}/>
+      </div>
+      {{/photos}}
     </div>
-    {{/photos}}
   </div>
 </div>
 
