@@ -8,10 +8,17 @@ export default class Gallery {
     this.photos = photos;
     this.size = size;
     this.current = current;
-    this.container = container
+    this.currentIndex = this.getPhotoIndexById(current);
 
+    this.prevSlide = this.currentIndex ? this.currentIndex - 1 : 1;
+    this.container = container
     this.setupLayout();
     this.setupEventHandlers();
+    this.setCurrentSlide(this.currentIndex);
+  }
+
+  getPhotoIndexById(id) {
+    return this.photos.reduce((acc, photo, index) => photo.id === id ? index : acc, 0);
   }
 
   setupLayout() {
@@ -28,17 +35,28 @@ export default class Gallery {
   setupEventHandlers() {
     this.container.querySelector('.slider-btn-next').addEventListener('click', () => {
       console.log('next');
-      this.slide('right');
+      if (this.currentIndex < this.photos.length - this.size) {
+        this.setCurrentSlide(this.currentIndex + 1);
+      }
     })
     this.container.querySelector('.slider-btn-prev').addEventListener('click', () => {
       console.log('prev');
-      this.slide('left');
+      if (this.currentIndex > 0) {
+        this.setCurrentSlide(this.currentIndex - 1);
+      }
     })
   }
 
-  slide(direction) {
+  setCurrentSlide(currentSlide) {
+    this.prevSlide = this.currentIndex;
+    this.currentIndex = currentSlide;
+
     const $slider = document.querySelector('.slider-in');
-    const offset = $slider.offsetLeft - (direction === 'left'? -1: 1) * this.slideWidth;
-    $slider.style.left = `${offset}px`
+    const offset = this.slideWidth * -currentSlide;
+    $slider.style.left = `${offset}px`;
+
+    $slider.querySelector(`.slide:nth-child(${this.prevSlide + 1})`).classList.remove('slide-active');
+    $slider.querySelector(`.slide:nth-child(${currentSlide + 1})`).classList.add('slide-active');
+
   }
 }
