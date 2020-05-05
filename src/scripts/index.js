@@ -2,7 +2,7 @@ import Gallery from './gallery';
 
 const gallery = new Gallery({
   photos: [
-    {id: '0', src: 'https://i.picsum.photos/id/318/100/300.jpg'},
+    {id: '0', src: 'https://i.picsum.photos/id/318/200/200.jpg'},
     {id: '1', src: 'https://i.picsum.photos/id/319/200/200.jpg'},
     {id: '2', src: 'https://i.picsum.photos/id/320/200/200.jpg'},
     {id: '3', src: 'https://i.picsum.photos/id/321/200/200.jpg'},

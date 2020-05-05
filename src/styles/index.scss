@@ -1,9 +1,17 @@
-$body-color: slateblue;
 $slider-bg: #D2D2D2;
 
-body {
-  color: $body-color;
-  font-family: sans-serif;
+html{
+  height: 100%;
+}
+body{
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#gallery{
+  user-select: none;
 }
 
 .slider-wrap {
