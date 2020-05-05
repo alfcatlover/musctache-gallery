@@ -1,8 +1,12 @@
-<div class="slider">
+<div class="slider-wrap">
+  <div class="slider-btn-prev"><</div>
+  <div class="slider-btn-next">></div>
+  <div class="slider" style="width: {{sliderWidth}}px">
     {{#photos}}
-    <div class="slide">
-        <b>id: {{id}}</b> {{src}}
+    <div class="slide" data-index={{index}} style="left: {{offsetLeft}}px">
+      <img src={{src}} />
     </div>
     {{/photos}}
+  </div>
 </div>
 
