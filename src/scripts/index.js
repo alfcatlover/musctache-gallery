@@ -17,5 +17,5 @@ const gallery = new Gallery({
   container: document.getElementById('gallery'),
   ///Optional params
   slideWidth: 165
-})
+});
 

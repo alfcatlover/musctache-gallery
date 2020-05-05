@@ -60,7 +60,7 @@ export default class Gallery {
     this.container.querySelectorAll('.slide').forEach(($slide) => {
       $slide.addEventListener('click', () => {
         this.scrollToSlide(parseInt($slide.dataset.index));
-      })
+      });
     });
 
     document.onkeydown = ({keyCode}) => {
