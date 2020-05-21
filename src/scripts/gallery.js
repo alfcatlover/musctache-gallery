@@ -80,7 +80,6 @@ export default class Gallery {
       this.prevSlide = this.currentIndex;
       this.currentIndex = currentSlide;
       const $slider = document.querySelector('.slider-in');
-      debugger
       let offset = (this.slideWidth * -currentSlide) + (this.slideWidth * Math.ceil((this.size - 1) / 2));
 
       if (currentSlide <= Math.ceil((this.size-1) / 2)) {
